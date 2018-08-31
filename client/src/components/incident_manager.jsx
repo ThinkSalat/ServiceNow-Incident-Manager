@@ -63,29 +63,21 @@ export default class IncidentManager extends React.Component {
                   accessor: "short_description"
                 },
                 {
-                  Header: "Priority",
-                  accessor: "priority"
+                  Header: "Active",
+                  accessor: "active"
                 },
                 {
-                  Header: "Opened at",
-                  accessor: "opened_at"
+                  Header: "Priority",
+                  accessor: "priority"
                 },
                 {
                   Header: "Category",
                   accessor: "category"
                 },
                 {
-                  Header: "Active",
-                  accessor: "active"
+                  Header: "Opened at",
+                  accessor: "opened_at"
                 },
-                {
-                  Header: "Description",
-                  accessor: "description"
-                },
-                {
-                  Header: "Resolution",
-                  accessor: "close_notes"
-                }
               ]
             }
           ]}
