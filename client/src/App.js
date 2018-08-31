@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
           <HashRouter>
             <Switch>
-              <Route path='/incidents/:number' component={Incident}/>
+              {/* <Route path='/incidents/:number' component={IncidentManager}/> */}
               <Route path='/' component={IncidentManager} />
             </Switch>
           </HashRouter>

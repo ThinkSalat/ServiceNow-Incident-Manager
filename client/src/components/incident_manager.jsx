@@ -17,8 +17,8 @@ export default class IncidentManager extends React.Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
-  handleOpenModal() {
-    this.setState({ showModal: true });
+  handleOpenModal(number) {
+    this.setState({ showModal: true, number });
   }
 
   handleCloseModal() {
@@ -33,7 +33,7 @@ export default class IncidentManager extends React.Component {
             return incident.number === e.currentTarget.innerText;
           })[0];
 
-          this.handleOpenModal();
+          this.handleOpenModal(row.number);
           // this.props.history.push(`incidents/${row.number}`);
         },
         style: {
@@ -48,7 +48,7 @@ export default class IncidentManager extends React.Component {
     return(
       <div>
         <ReactModal isOpen={this.state.showModal} appElement={document.getElementById('root')}>
-          <Incident />
+          <Incident handleCloseModal={this.handleCloseModal.bind(this)} number={this.state.number}/>
         </ReactModal>
         <ReactTable
           data={caches.incidents}

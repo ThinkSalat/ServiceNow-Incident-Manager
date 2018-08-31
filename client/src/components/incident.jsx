@@ -28,18 +28,18 @@ export default class Incident extends React.Component {
   }
 
   render() {
-    let {number} = this.props.match.params;
+    let {number} = this.props;
     let incident = caches.incidents.filter( inc => inc.number == number)[0];
     return(
       <div>
         <header>
-          <Link to="/">Back to incidents</Link>
-          <div>Incident {this.props.match.params.number}</div>
+          <button onClick={() => this.props.handleCloseModal()}>Close Modal</button>
+          <div>Incident {incident.number}</div>
         </header>
         <div>
           Details:
           <ul>
-            {/* <li>Description: {incident.description}</li> */}
+            <li>Description: {incident.description}</li> */}
             {this.incidentDetails(incident)}
           </ul>
         </div>
