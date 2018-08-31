@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { Route, Switch, HashRouter } from 'react-router-dom';
 import './App.css';
 
-import IncidentContainer from './components/incident_container';
-import IncidentManagerContainer from './components/incident_manager_container';
+import Incident from './components/incident';
+import IncidentManager from './components/incident_manager';
 
 class App extends Component {
   render() {
@@ -13,8 +13,8 @@ class App extends Component {
         <Provider store={this.props.store}>
           <HashRouter>
             <Switch>
-              <Route path='/incidents/:id' component={IncidentContainer}/>
-              <Route path='/' component={IncidentManagerContainer} />
+              <Route path='/incidents/:id' component={Incident}/>
+              <Route path='/' component={IncidentManager} />
             </Switch>
           </HashRouter>
         </Provider>
