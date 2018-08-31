@@ -26,13 +26,12 @@ export default class IncidentManager extends React.Component {
   }
 
   openModal(state, rowInfo, column, instance) {
-      if (column.Header === "Incident Number") {
+      // if (column.Header === "Incident Number") {
         return {
         onClick: (e, handleOriginal) => {
           let row = caches.incidents.filter( incident => {
-            return incident.number === e.currentTarget.innerText;
+            return incident.number === rowInfo.original.number;
           })[0];
-
           this.handleOpenModal(row.number);
           // this.props.history.push(`incidents/${row.number}`);
         },
@@ -40,9 +39,9 @@ export default class IncidentManager extends React.Component {
           cursor: 'pointer'
         } 
       };
-    } else {
-      return {};
-    }
+    // } else {
+    //   return {};
+    // }
   }
   render() {
     return(
@@ -94,7 +93,7 @@ export default class IncidentManager extends React.Component {
           className="-striped -highlight"
           // pivotBy={["active", "priority"]}
           noDataText="No data loaded, API may be down"
-          getTdProps={this.openModal.bind(this)}
+          getTrProps={this.openModal.bind(this)}
           filterable
           />
           <br />

@@ -7,11 +7,12 @@ export default class Incident extends React.Component {
   }
 
   incidentDetails(incident) {
-    let filter = ['sys_updated_by','sys_created_by', 'calendar_stc', 'made_sla', 'watch_list', 'upon_reject', 'sys_updated_on', 'hold_reason', 'caused_by', 'approval_history'];
-    let whiteList = ['parent', 'sys_updated_on', 'number', 'resolved_by', 'link', 'opened_by', 'closed_at', 'impact', 'active', 'priority','opened_at','resolved_at','category', 'subcategory', 'short_description', 'description', 'assignment_group', 'close_notes', 'closed_by', 'incident_state','urgency', 'assigned_to', 'severity','comments','approval','due_date', 'comments_and_work_notes', 'escalation', 'reopen_count','location'];
+    // let filter = ['sys_updated_by','sys_created_by', 'calendar_stc', 'made_sla', 'watch_list', 'upon_reject', 'sys_updated_on', 'hold_reason', 'caused_by', 'approval_history'];
+    // let whiteList = ['parent', 'sys_updated_on', 'number', 'resolved_by', 'link', 'opened_by', 'closed_at', 'impact', 'active', 'priority','opened_at','resolved_at','category', 'subcategory', 'short_description', 'description', 'assignment_group', 'close_notes', 'closed_by', 'incident_state','urgency', 'assigned_to', 'severity','comments','approval','due_date', 'comments_and_work_notes', 'escalation', 'reopen_count','location'];
+    let whiteList = ['sys_updated_on', 'number', 'closed_at', 'impact', 'active', 'priority','opened_at','resolved_at','category', 'subcategory', 'description',  'assigned_to'];
     return Object.keys(incident).map (key => {
       if (typeof incident[key] !== 'object'){
-        if (whiteList.includes(key) || incident[key].length < 1 ) {
+        if (!whiteList.includes(key)) {
           return;
         } else if (key !== 'link'){
           return <li>{key}: {incident[key]}</li>;
@@ -19,10 +20,11 @@ export default class Incident extends React.Component {
           return <li><Link to={incident[key]}>{key}</Link></li>;
         }
       } else {
-        return <ul>
-          <li>{key}</li>
-          {this.incidentDetails(incident[key])}
-        </ul>;
+        return;
+        // return <ul>
+        //   <li>{key}</li>
+        //   {this.incidentDetails(incident[key])}
+        // </ul>;
       }
     });
   }
@@ -39,7 +41,7 @@ export default class Incident extends React.Component {
         <div>
           Details:
           <ul>
-            <li>Description: {incident.description}</li> */}
+            <li>Description: {incident.short_description}</li> */}
             {this.incidentDetails(incident)}
           </ul>
         </div>
