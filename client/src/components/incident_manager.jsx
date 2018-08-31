@@ -1,9 +1,30 @@
 import React from 'react';
 import ReactTable from "react-table";
+import ReactModal from 'react-modal';
 import Link from 'react-router-dom';
 import "react-table/react-table.css";
 
+import Incident from './incident';
+
 export default class IncidentManager extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      showModal: false
+    };
+
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false });
+  }
+
   openModal(state, rowInfo, column, instance) {
       if (column.Header === "Incident Number") {
         return {
@@ -11,7 +32,9 @@ export default class IncidentManager extends React.Component {
           let row = caches.incidents.filter( incident => {
             return incident.number === e.currentTarget.innerText;
           })[0];
-          this.props.history.push(`incidents/${row.number}`);
+
+          this.handleOpenModal();
+          // this.props.history.push(`incidents/${row.number}`);
         },
         style: {
           cursor: 'pointer'
@@ -24,6 +47,9 @@ export default class IncidentManager extends React.Component {
   render() {
     return(
       <div>
+        <ReactModal isOpen={this.state.showModal} appElement={document.getElementById('root')}>
+          <Incident />
+        </ReactModal>
         <ReactTable
           data={caches.incidents}
           columns={[
