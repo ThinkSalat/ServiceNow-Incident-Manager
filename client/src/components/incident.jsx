@@ -41,7 +41,7 @@ export default class Incident extends React.Component {
         <div>
           Details:
           <ul>
-            <li>Description: {incident.short_description}</li> */}
+            <li>Description: {incident.short_description}</li>
             {this.incidentDetails(incident)}
           </ul>
         </div>
